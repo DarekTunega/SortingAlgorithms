@@ -1,4 +1,5 @@
-
+import time
+import random
 # Bubble Sort
 def bubble_sort(arr):
     n = len(arr)
@@ -118,3 +119,25 @@ def merge_sort(arr):
             merge(arr, l, m, r)
 
     merge_sort_helper(arr, 0, len(arr) - 1)
+
+
+def generate_random_array(size):
+    return [random.randint(0, size) for _ in range(size)]
+
+def benchmark(sort_algo, array):
+    start_time = time.time()
+    sort_algo(array)
+    ending_time = time.time()
+    exe_time = ending_time - start_time
+    return exe_time
+
+test_cases = [100, 1000, 10000, 15000]
+
+for size in test_cases:
+    array = generate_random_array(size)
+    benchmarked_func = benchmark(heap_sort, array.copy())
+
+    print(f"Array size: {size}")
+    print(f"Time: {benchmarked_func} seconds")
+    print()
+print("bencmark ended")
